@@ -8,5 +8,5 @@ void setup() {
 
 void draw() {
   background(0);
-  ellipse(random(width), random(height), 50, 50);
+  ellipse(random(width), random(height), 70, 70);
 }
