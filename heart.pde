@@ -14,8 +14,10 @@ void draw() {
 }
 
 class Heart {
-  PVector pos=new PVector(width/2,height/2);
+  PVector pos=new PVector(width/2, height/2);
   void draw() {
-    ellipse(pos.x, pos.y, 70, 70);
+    ellipse(pos.x-20, pos.y, 40, 40);
+    ellipse(pos.x+20, pos.y, 40, 40);
+    triangle(pos.x-40, pos.y, pos.x+40, pos.y, pos.x, pos.y+80);
   }
 }
