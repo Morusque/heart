@@ -14,7 +14,8 @@ void draw() {
 }
 
 class Heart {
+  PVector pos=new PVector(width/2,height/2);
   void draw() {
-    ellipse(random(width), random(height), 70, 70);
+    ellipse(pos.x, pos.y, 70, 70);
   }
 }
