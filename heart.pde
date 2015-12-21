@@ -1,4 +1,6 @@
-//aaa
+
+Heart heart = new Heart();
+
 void setup() {
   size(300, 300);
   background(0);
@@ -8,5 +10,11 @@ void setup() {
 
 void draw() {
   background(0);
-  ellipse(random(width), random(height), 70, 70);
+  heart.draw();
+}
+
+class Heart {
+  void draw() {
+    ellipse(random(width), random(height), 70, 70);
+  }
 }
