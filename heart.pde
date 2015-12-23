@@ -17,8 +17,10 @@ class Heart {
   PVector pos = new PVector(random(width), random(height));
   void draw() {
     fill(random(0xFF), 0, 0);
-    ellipse(pos.x-15, pos.y, 40, 40);
-    ellipse(pos.x+15, pos.y, 40, 40);
-    triangle(pos.x-35, pos.y, pos.x+35, pos.y, pos.x, pos.y+50);
+    float rad = 23;
+    float esp = 15;
+    ellipse(pos.x-esp, pos.y, rad*2, rad*2);
+    ellipse(pos.x+esp, pos.y, rad*2, rad*2);
+    triangle(pos.x-esp+rad*cos(TWO_PI*3/8), pos.y+rad*sin(TWO_PI*3/8), pos.x+esp+rad*cos(TWO_PI*1/8), pos.y+rad*sin(TWO_PI*1/8), pos.x, pos.y+50);
   }
 }
