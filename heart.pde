@@ -1,4 +1,4 @@
-
+ //<>//
 ArrayList<Heart> hearts = new ArrayList<Heart>();
 
 void setup() {
@@ -15,6 +15,7 @@ void draw() {
 
 class Heart {
   PVector pos = new PVector(random(width), random(height));
+  PVector dir = new PVector(random(-1, 1), random(-1, 1));
   color c = color(random(0x100), random(0x80), random(0x50));
   void draw() {
     fill(c);
@@ -23,7 +24,7 @@ class Heart {
     ellipse(pos.x-esp, pos.y, rad*2, rad*2);
     ellipse(pos.x+esp, pos.y, rad*2, rad*2);
     triangle(pos.x-esp+rad*cos(TWO_PI*3/8), pos.y+rad*sin(TWO_PI*3/8), pos.x+esp+rad*cos(TWO_PI*1/8), pos.y+rad*sin(TWO_PI*1/8), pos.x, pos.y+50);
-    pos.x=(pos.x+1.3f)%width;
-    pos.y=(pos.y+1.0f)%height;
+    pos.x=(pos.x+dir.x+width)%width;
+    pos.y=(pos.y+dir.y+height)%height;
   }
 }
