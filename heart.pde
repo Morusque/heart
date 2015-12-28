@@ -9,7 +9,6 @@ void setup() {
 }
 
 void draw() {
-  background(0);
   for (int i=0; i<hearts.size (); i++) {
     if (hearts.get(i).life>1) hearts.set(i, new Heart(0));
   }
@@ -26,7 +25,7 @@ class Heart {
     this.life=life;
   }
   void draw() {
-    fill(c);
+    fill(red(c)*life, green(c)*life, blue(c)*life);
     float rad = s*life;
     float esp = rad*2.0f/3.0f;
     ellipse(pos.x-esp, pos.y, rad*2, rad*2);
