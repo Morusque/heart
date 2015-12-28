@@ -5,13 +5,13 @@ void setup() {
   size(400, 400);
   background(0);
   noStroke();
-  for (int i=0; i<20; i++) hearts.add(new Heart());
+  for (int i=0; i<20; i++) hearts.add(new Heart(random(1)));
 }
 
 void draw() {
   background(0);
   for (int i=0; i<hearts.size (); i++) {
-    if (hearts.get(i).life>1) hearts.set(i, new Heart());
+    if (hearts.get(i).life>1) hearts.set(i, new Heart(0));
   }
   for (Heart heart : hearts) heart.draw();
 }
@@ -22,6 +22,9 @@ class Heart {
   color c = color(random(0x100), random(0x80), random(0x50));
   float s = random(10, 30);
   float life=0;
+  Heart (float life) {
+    this.life=life;
+  }
   void draw() {
     fill(c);
     float rad = s*life;
