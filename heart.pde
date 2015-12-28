@@ -5,10 +5,12 @@ void setup() {
   size(400, 400);
   background(0);
   noStroke();
-  for (int i=0; i<20; i++) hearts.add(new Heart(random(1)));
+  for (int i=0; i<50; i++) hearts.add(new Heart(random(1)));
 }
 
 void draw() {
+  fill(0, 0x10);
+  rect(0, 0, width, height);
   for (int i=0; i<hearts.size (); i++) {
     if (hearts.get(i).life>1) hearts.set(i, new Heart(0));
   }
