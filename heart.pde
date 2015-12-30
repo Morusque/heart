@@ -1,11 +1,11 @@
-
-ArrayList<Heart> hearts = new ArrayList<Heart>(); //<>//
+ //<>//
+ArrayList<Heart> hearts = new ArrayList<Heart>();
 
 void setup() {
   size(400, 400);
   background(0);
   noStroke();
-  for (int i=0; i<50; i++) hearts.add(new Heart(random(1)));
+  for (int i=0; i<30; i++) hearts.add(new Heart(random(1)));
 }
 
 void draw() {
@@ -30,7 +30,7 @@ class Heart {
   }
   void draw() {
     fill(red(c)*life, green(c)*life, blue(c)*life);
-    float rad = s*life;
+    float rad = s*pow(life, 5);
     float esp = rad*2.0f/3.0f;
     ellipse(pos.x-esp+cos(mergeA)*mergeL*(1-life), pos.y+sin(mergeA)*mergeL*(1-life), rad*2, rad*2);
     ellipse(pos.x+esp+cos(mergeA+PI)*mergeL*(1-life), pos.y+sin(mergeA+PI)*mergeL*(1-life), rad*2, rad*2);
