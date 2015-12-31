@@ -50,6 +50,7 @@ class Heart {
     triangle(pos.x-esp+rad*cos(TWO_PI*3/8), pos.y+rad*sin(TWO_PI*3/8), pos.x+esp+rad*cos(TWO_PI*1/8), pos.y+rad*sin(TWO_PI*1/8), pos.x, pos.y+rad*2);
     pos.x=(pos.x+dir.x+width)%width;
     pos.y=(pos.y+dir.y+height)%height;
-    life+=random(0.01);
+    if (state==0) life+=random(0.005);
+    if (state==1) life+=random(0.02);
   }
 }
