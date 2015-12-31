@@ -1,5 +1,6 @@
  //<>//
 ArrayList<Heart> hearts = new ArrayList<Heart>();
+int state = 0;
 
 void setup() {
   size(400, 400);
@@ -9,12 +10,22 @@ void setup() {
 }
 
 void draw() {
-  fill(0, 0x20);
-  rect(0, 0, width, height);
-  for (int i=0; i<hearts.size (); i++) {
-    if (hearts.get(i).life>1) hearts.set(i, new Heart(0));
+  if (state==0) { 
+    fill(0, 0x20);
+    rect(0, 0, width, height);
+    for (int i=0; i<hearts.size (); i++) {
+      if (hearts.get(i).life>1) hearts.set(i, new Heart(0));
+    }
+    for (Heart heart : hearts) heart.draw();
   }
-  for (Heart heart : hearts) heart.draw();
+  if (state==1) { 
+    fill(0, 0x20);
+    rect(0, 0, width, height);
+    for (int i=0; i<hearts.size (); i++) {
+      if (hearts.get(i).life>1) hearts.set(i, new Heart(0));
+    }
+    for (Heart heart : hearts) heart.draw();
+  }
 }
 
 class Heart {
