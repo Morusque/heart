@@ -31,6 +31,7 @@ void draw() {
 class Heart {
   PVector pos = new PVector(random(width), random(height));
   PVector dir = new PVector(random(TWO_PI), random(0, 3));
+  float turnRate = random(0.3f);
   color c = color(random(0x100), random(0x80), random(0x50));
   float s = random(10, 30);
   float life=0;
@@ -51,7 +52,7 @@ class Heart {
     if (state==1) { 
       pos.x=(pos.x+cos(dir.x)*dir.y+width)%width;
       pos.y=(pos.y+cos(dir.y)*dir.y+height)%height;
-      dir.x+=0.1f;
+      dir.x+=turnRate;
     }
     if (state==0) life+=random(0.005);
     if (state==1) life+=random(0.02);
