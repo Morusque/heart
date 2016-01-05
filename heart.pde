@@ -30,7 +30,7 @@ void draw() {
 
 class Heart {
   PVector pos = new PVector(random(width), random(height));
-  PVector dir = new PVector(random(-1, 1), random(-1, 1));
+  PVector dir = new PVector(random(TWO_PI), random(0,1));
   color c = color(random(0x100), random(0x80), random(0x50));
   float s = random(10, 30);
   float life=0;
@@ -48,8 +48,8 @@ class Heart {
     ellipse(pos.x-esp+cos(mergeA)*thisMergeL, pos.y+sin(mergeA)*thisMergeL, rad*2, rad*2);
     ellipse(pos.x+esp+cos(mergeA+PI)*thisMergeL, pos.y+sin(mergeA+PI)*thisMergeL, rad*2, rad*2);
     triangle(pos.x-esp+rad*cos(TWO_PI*3/8), pos.y+rad*sin(TWO_PI*3/8), pos.x+esp+rad*cos(TWO_PI*1/8), pos.y+rad*sin(TWO_PI*1/8), pos.x, pos.y+rad*2);
-    pos.x=(pos.x+dir.x+width)%width;
-    pos.y=(pos.y+dir.y+height)%height;
+    pos.x=(pos.x+cos(dir.x)*dir.y+width)%width;
+    pos.y=(pos.y+cos(dir.y)*dir.y+height)%height;
     if (state==0) life+=random(0.005);
     if (state==1) life+=random(0.02);
   }
