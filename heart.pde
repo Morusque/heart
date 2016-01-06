@@ -1,9 +1,11 @@
  //<>//
 ArrayList<Heart> hearts = new ArrayList<Heart>();
 int state = 1;
+int frameNb=0;
 
 void setup() {
-  size(600, 600);
+  size(700, 700);
+  frameRate(60);
   background(0);
   noStroke();
   for (int i=0; i<30; i++) hearts.add(new Heart(random(1)));
@@ -13,7 +15,7 @@ void draw() {
   if (state==0) { 
     background(0);
     for (int i=0; i<hearts.size (); i++) {
-      if (hearts.get(i).dead) hearts.set(i, new Heart(0));
+      if (hearts.get(i).dead) hearts.remove(i);
     }
     for (Heart heart : hearts) heart.draw();
   }
@@ -21,10 +23,12 @@ void draw() {
     fill(0, 0x0A);
     rect(0, 0, width, height);
     for (int i=0; i<hearts.size (); i++) {
-      if (hearts.get(i).dead) hearts.set(i, new Heart(0));
+      if (hearts.get(i).dead) hearts.remove(i);
     }
     for (Heart heart : hearts) heart.draw();
   }
+  if (frameNb%5==0) hearts.add(new Heart(0));
+  frameNb++;
 }
 
 class Heart {
@@ -42,12 +46,14 @@ class Heart {
     pos = new PVector(mouseX, mouseY);
   }
   void draw() {
+    fill(0x80);
+    ellipse(pos.x, pos.y, 2, 2);    
     fill(red(c)*life, green(c)*life, blue(c)*life);
     float rad = s*pow(life, 5);
     float esp = rad*2.0f/3.0f;
     float thisMergeL = mergeL*(1-life); 
     if (life>=1) thisMergeL = 0;
-    if (state==1) thisMergeL=0;
+    if (state==1) thisMergeL=0;    
     ellipse(pos.x-esp+cos(mergeA)*thisMergeL, pos.y+sin(mergeA)*thisMergeL, rad*2, rad*2);
     ellipse(pos.x+esp+cos(mergeA+PI)*thisMergeL, pos.y+sin(mergeA+PI)*thisMergeL, rad*2, rad*2);
     triangle(pos.x-esp+rad*cos(TWO_PI*3/8), pos.y+rad*sin(TWO_PI*3/8), pos.x+esp+rad*cos(TWO_PI*1/8), pos.y+rad*sin(TWO_PI*1/8), pos.x, pos.y+rad*2);
