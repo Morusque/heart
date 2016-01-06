@@ -13,7 +13,7 @@ void draw() {
   if (state==0) { 
     background(0);
     for (int i=0; i<hearts.size (); i++) {
-      if (hearts.get(i).life>1) hearts.set(i, new Heart(0));
+      if (hearts.get(i).dead) hearts.set(i, new Heart(0));
     }
     for (Heart heart : hearts) heart.draw();
   }
@@ -21,11 +21,11 @@ void draw() {
     fill(0, 0x0A);
     rect(0, 0, width, height);
     for (int i=0; i<hearts.size (); i++) {
-      if (hearts.get(i).life>1) hearts.set(i, new Heart(0));
+      if (hearts.get(i).dead) hearts.set(i, new Heart(0));
     }
     for (Heart heart : hearts) heart.draw();
   }
-  if (random(100)<1) state=(state+1)%2;
+  if (random(1000)<1) state=(state+1)%2;
 }
 
 class Heart {
@@ -36,7 +36,8 @@ class Heart {
   float s = random(10, 30);
   float life=0;
   float mergeA = random(TWO_PI);
-  float mergeL = random(100);
+  float mergeL = random(500);
+  boolean dead=false;
   Heart (float life) {
     this.life=life;
   }
@@ -45,14 +46,20 @@ class Heart {
     float rad = s*pow(life, 5);
     float esp = rad*2.0f/3.0f;
     float thisMergeL = mergeL*(1-life); 
+    if (life>=1) thisMergeL = 0;
     if (state==1) thisMergeL=0;
     ellipse(pos.x-esp+cos(mergeA)*thisMergeL, pos.y+sin(mergeA)*thisMergeL, rad*2, rad*2);
     ellipse(pos.x+esp+cos(mergeA+PI)*thisMergeL, pos.y+sin(mergeA+PI)*thisMergeL, rad*2, rad*2);
     triangle(pos.x-esp+rad*cos(TWO_PI*3/8), pos.y+rad*sin(TWO_PI*3/8), pos.x+esp+rad*cos(TWO_PI*1/8), pos.y+rad*sin(TWO_PI*1/8), pos.x, pos.y+rad*2);
-    if (state==1) { 
+    if (state==0) {
+      if (life>=1) pos.y-=10;  
+      if (pos.y<-rad*2) dead=true;
+    }
+    if (state==1) {
       pos.x=(pos.x+cos(dir.x)*dir.y+width)%width;
       pos.y=(pos.y+cos(dir.y)*dir.y+height)%height;
       dir.x+=turnRate;
+      if (life>=1) dead=true;
     }
     if (state==0) life+=random(0.005);
     if (state==1) life+=random(0.02);
