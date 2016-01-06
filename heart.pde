@@ -1,9 +1,9 @@
  //<>//
 ArrayList<Heart> hearts = new ArrayList<Heart>();
-int state = 0;
+int state = 1;
 
 void setup() {
-  size(400, 400);
+  size(600, 600);
   background(0);
   noStroke();
   for (int i=0; i<30; i++) hearts.add(new Heart(random(1)));
@@ -25,7 +25,6 @@ void draw() {
     }
     for (Heart heart : hearts) heart.draw();
   }
-  if (random(1000)<1) state=(state+1)%2;
 }
 
 class Heart {
@@ -40,6 +39,7 @@ class Heart {
   boolean dead=false;
   Heart (float life) {
     this.life=life;
+    pos = new PVector(mouseX, mouseY);
   }
   void draw() {
     fill(red(c)*life, green(c)*life, blue(c)*life);
@@ -64,4 +64,8 @@ class Heart {
     if (state==0) life+=random(0.005);
     if (state==1) life+=random(0.02);
   }
+}
+
+void mousePressed() {
+  state=(state+1)%2;
 }
